@@ -14,8 +14,7 @@ var devConfig = {
         app: [
             hotMiddlewareScript, 
             './src/js/index.js'
-        ],
-        vendor: ['./src/assets/js-libs/auto-fix-screen.js', 'vue', 'vuex', 'vue-router', 'axios', 'promise', 'weui.js']
+        ]
     },
     output: {
         filename: 'js/[name].[hash].js',
@@ -48,6 +47,7 @@ var devConfig = {
             },
             {
                 test: /\.css$/,
+                //loader: ExtractTextPlugin.extract('style','css'),
                 loader: 'style!css',
                 exclude: /node_modules/
             },
@@ -71,11 +71,9 @@ var devConfig = {
         }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js'),
         new CopyPlugin([{ from: path.join(__dirname, '../src/assets'), to: path.join(__dirname, '../dist/assets')}]),
-        new ExtractTextPlugin('css/[name].[hash].css'),
+        new ExtractTextPlugin('./dist/css/[name].[hash].css'),
         new HtmlWebPlugin({
-            title: 'txm test app',
             filename: path.join(__dirname, '../dist/', 'index.html'),
             template: path.join(__dirname, '../src/', 'index.html'),
             favicon: '',
