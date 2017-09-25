@@ -29,15 +29,10 @@ app.use(webpackHotMiddleware(compiler));
 //app.use(express.static(__dirname + '/../dist'));
 
 app.get('*', function(req, res) {
-    /*//var url = path.join(__dirname, '../dist/index.html');
-    var url = path.join(compiler.outputPath, 'index.html');
-    console.info('*******************', req.url, '*************');
-    //res.sendFile(path.join(__dirname, '/public/', 'index.html'));
-    res.sendFile(url);*/
-
+    //TODO compiler.outputPath is equal to the webpack publickPath
     var filename = path.join(compiler.outputPath,'index.html');
-
-    console.info('####', compiler.outputPath, path.join(compiler.outputPath, 'index.html'));
+    //console.info('####', compiler.outputPath, path.join(compiler.outputPath, 'index.html'));
+    console.info('[req info]', req.params);
 
     compiler.outputFileSystem.readFile(filename, function(err, result){
         if (err) {
@@ -51,7 +46,7 @@ app.get('*', function(req, res) {
 });
 
 //TODO why in windows the port must to be 8088, and in mac you can define anyother port
-//sometimes the npm start cli will get the "event: 160 erro" in windows you need to run the cli in the ternimal "rm -rf node_modules && npm cache clean --force && npm install"
+//sometimes the npm start cli will get the "event: 160 erro" in windows you need to run the cli in the ternimal "rm -rf node_modules && npm cache clean --force && npm install" or the port still works need to end them
 app.listen(envConfig.dev.port, function(arg){
-	console.info('---------dev server started----------', 'http://localhost:8088');
+	console.info('dev server started at: ', 'http://localhost:8088');
 });

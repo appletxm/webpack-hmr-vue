@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyPlugin = require('copy-webpack-plugin');
 var envConfig = require('./env');
 
-var publicPath = 'http://' + envConfig.dev.host + ':' + envConfig.dev.port + 'dist';
+var publicPath = 'http://' + envConfig.dev.host + ':' + envConfig.dev.port + '/dist';
 //var publicPath = path.resolve('./dist');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
@@ -71,7 +71,7 @@ var devConfig = {
         }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor',  path.join(__dirname, './dist/js/vendor.js')),
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js'),
         new CopyPlugin([{ from: path.join(__dirname, '../src/assets'), to: path.join(__dirname, '../dist/assets')}]),
         new ExtractTextPlugin('css/[name].[hash].css'),
         new HtmlWebPlugin({
