@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
 import home from './pages/home';
 import help from './pages/help';
 import about from './pages/about';

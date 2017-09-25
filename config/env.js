@@ -27,8 +27,19 @@ module.exports = {
         }
     },
     prd: {
-        jsLibs: {
-            
+        libFiles: {
+            css: [
+               'assets/font/iconfont.css',
+               'assets/style/weui.css'
+            ],
+            js: [
+                'assets/js-libs/auto-fix-screen.js',
+                'assets/js-libs/weui.min.js',
+                'assets/js-libs/vue.min.js',
+                'assets/js-libs/vue-router.min.js',
+                'assets/js-libs/vuex.min.js',
+                'assets/js-libs/axios.min.js'
+            ]
         }
     }
 };

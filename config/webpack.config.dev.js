@@ -56,12 +56,17 @@ var devConfig = {
                 //loader: ExtractTextPlugin.extract('style', 'css', 'sass'),
                 loader: 'style!css!sass',
                 exclude: /node_modules/
-            }/*,
+            },
+           /* {
+                test: /\.vue$/,
+                loader: 'vue',
+                exclude: /node_modules/
+            },*/
             {
                 test: /\.html$/,
                 loader: 'html',
                 exclude: /node_modules/
-            }*/
+            }
         ]
     },
     resolve: {
@@ -76,7 +81,7 @@ var devConfig = {
         new HtmlWebPlugin({
             libFiles: envConfig.dev.libFiles,
             filename: path.join(__dirname, '../dist/', 'index.html'),
-            template: path.join(__dirname, '../src/', 'index.html'),
+            template: path.join(__dirname, '../src/', 'index.ejs'),
             favicon: '',
             inject: 'body'
         }),
