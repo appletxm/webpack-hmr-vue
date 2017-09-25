@@ -32,12 +32,12 @@ var devConfig = {
             },
             {
                 test: /\.(png|jpg)$/,
-                loader: 'url?limit=8192&context=client&name=[path][name].[ext]',
+                loader: 'url?limit=5000&context=client&name=[path][name].[ext]',
                 exclude: /node_modules/
             },
             {
                 test: /\.(woff|eot|eot|ttf|svg)(\?.+)?$/, 
-                loader: "file?limit=8192&context=client&name=[path][name].[ext]",
+                loader: "file?limit=5000&context=client&name=[path][name].[ext]",
                 exclude: /node_modules/,
             },
             {
@@ -47,8 +47,8 @@ var devConfig = {
             },
             {
                 test: /\.css$/,
-                //loader: ExtractTextPlugin.extract('style','css'),
-                loader: 'style!css',
+                loader: ExtractTextPlugin.extract('style','css'),
+                //loader: 'style!css',
                 exclude: /node_modules/
             },
             {
@@ -56,12 +56,12 @@ var devConfig = {
                 //loader: ExtractTextPlugin.extract('style', 'css', 'sass'),
                 loader: 'style!css!sass',
                 exclude: /node_modules/
-            },
+            }/*,
             {
                 test: /\.html$/,
                 loader: 'html',
                 exclude: /node_modules/
-            }
+            }*/
         ]
     },
     resolve: {
@@ -72,16 +72,17 @@ var devConfig = {
     },
     plugins: [
         new CopyPlugin([{ from: path.join(__dirname, '../src/assets'), to: path.join(__dirname, '../dist/assets')}]),
-        new ExtractTextPlugin('./dist/css/[name].[hash].css'),
+        new ExtractTextPlugin('css/[name].[hash].css'),
         new HtmlWebPlugin({
+            libFiles: envConfig.dev.libFiles,
             filename: path.join(__dirname, '../dist/', 'index.html'),
             template: path.join(__dirname, '../src/', 'index.html'),
             favicon: '',
             inject: 'body'
         }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
+        //new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        //new webpack.NoErrorsPlugin()
     ]
 };
 

@@ -1,14 +1,29 @@
+var devEnv = {
+    host:'localhost',
+    port: 8088,
+};
+var urlPrefix = 'http://' + devEnv.host + ':' + devEnv.port;
+var devlibJsPath = urlPrefix + '/dist/assets/js-libs/';
+var devlibCssPath = urlPrefix + '/dist/assets/style/';
+var devFontPath = urlPrefix + '/dist/assets/font/iconfont.css';
+
 module.exports = {
     dev:{
-        host: 'localhost',
-        port: 8088,
-        jsLibs: {
-            'auto-fix-screen': '/dist/assets/js-libs/auto-fix-screen.js',
-            'vue': '/dist/assets/js-libs/vue.js',
-            'vue-router': '/dist/assets/js-libs/vue-router.js',
-            'vuex': '/dist/assets/js-libs/vuex.js',
-            'axios': '/dist/assets/js-libs/axios.js',
-            'weui': '/dist/assets/js-libs/weui.js'
+        host: devEnv.host,
+        port: devEnv.port,
+        libFiles: {
+            css: [
+               devFontPath,
+               devlibCssPath + 'weui.css'
+            ],
+            js: [
+                devlibJsPath + 'auto-fix-screen.js',
+                devlibJsPath + 'weui.js',
+                devlibJsPath + 'vue.js',
+                devlibJsPath + 'vue-router.js',
+                devlibJsPath + 'vuex.js',
+                devlibJsPath + 'axios.js'
+            ]
         }
     },
     prd: {

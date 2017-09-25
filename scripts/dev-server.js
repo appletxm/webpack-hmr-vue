@@ -26,7 +26,7 @@ app.use(webpackDevMiddleware(compiler, {
 
 app.use(webpackHotMiddleware(compiler));
 
-//app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(__dirname + '/../dist'));
 
 app.get('*', function(req, res) {
     //TODO compiler.outputPath is equal to the webpack publickPath

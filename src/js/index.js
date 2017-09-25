@@ -10,6 +10,6 @@ import '../css/index.scss';
 // 	render: (h) => h(App)
 // }).$mount('#app');
 
-console.info(vue);
+console.info(Vue);
 
 

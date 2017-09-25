@@ -4,9 +4,22 @@
 	<meta charset="UTF-8">  
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
 	<title>my test vue hmr workspace</title> 
+	<link href="http://localhost:8088/dist/assets/style/weui.css" rel="stylesheet" />
+
+	<% var cssFiles = htmlWebpackPlugin.options.libFiles.css %>
+	<% for (var index in cssFiles) { %>
+    	<link href="<%= cssFiles[index] %>" rel="stylesheet" />
+    <% } %>
 </head>
 <body>
-	<div id="app"></div>
-	<scrpt src="http://localhost:8088/assets/js-libs/vue.min.js"></scrpt>
+	<h1><%= htmlWebpackPlugin.options.libFiles %></h1>
+	<div id="app" class="app"></div>
+
+	<% var jsFiles = htmlWebpackPlugin.options.libFiles.js %>
+	<% for (var index in jsFiles) { %>
+		<script type="text/javascript" src="<%= jsFiles[index] %>"></script>
+	<% } %>
+
+	<script type="text/javascript" src="http://localhost:8088/dist/assets/js-libs/vue.js"></script>
 </body>
 </html>
