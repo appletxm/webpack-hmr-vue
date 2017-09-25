@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import html from './template.html';
 import navigator from '../components/navigators';
 

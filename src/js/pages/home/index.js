@@ -1,4 +1,7 @@
 import html from './template.html';
+import weui from 'weui.js';
+
+console.info(weui);
 
 export default {
 	template: html,

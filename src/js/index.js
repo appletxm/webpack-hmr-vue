@@ -1,8 +1,5 @@
-import "../assets/font/iconfont.css";
 import '../css/index.scss';
-import '../assets/js-libs/auto-fix-screen.js';
-import weui from 'weui';
-
+import weui from 'weui.js';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import router from './router';

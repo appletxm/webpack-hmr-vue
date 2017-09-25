@@ -3,15 +3,19 @@ var webpack = require('webpack');
 var HtmlWebPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyPlugin = require('copy-webpack-plugin');
+var envConfig = require('./env');
 
-var publicPath = 'http://localhost:3000/dist/';
+var publicPath = 'http://' + envConfig.dev.host + ':' + envConfig.dev.port + 'dist';
 //var publicPath = path.resolve('./dist');
 var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
     entry: {
-        app: [hotMiddlewareScript, './src/js/index.js'],
-        vendor: ['./src/assets/js-libs/auto-fix-screen.js', 'vue', 'vuex', 'vue-router', 'axios', 'promise']
+        app: [
+            hotMiddlewareScript, 
+            './src/js/index.js'
+        ],
+        vendor: ['./src/assets/js-libs/auto-fix-screen.js', 'vue', 'vuex', 'vue-router', 'axios', 'promise', 'weui.js']
     },
     output: {
         filename: 'js/[name].[hash].js',
@@ -67,7 +71,7 @@ var devConfig = {
         }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor',  '../dist/js/vendor.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendor',  path.join(__dirname, './dist/js/vendor.js')),
         new CopyPlugin([{ from: path.join(__dirname, '../src/assets'), to: path.join(__dirname, '../dist/assets')}]),
         new ExtractTextPlugin('css/[name].[hash].css'),
         new HtmlWebPlugin({
