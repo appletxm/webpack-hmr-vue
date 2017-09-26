@@ -7,7 +7,7 @@ export default {
 	data(){
 		return {
 			title: 'hellow vue 2.0 dkdkdkdk'
-		}
+		};
 	},
 	components: {
 		'navigator': navigator

@@ -12,12 +12,14 @@
   },
   "scripts": {
     "clean": "rimraf dist/*",
-    "mock" : "npm run clean && node scripts/devServer.js mock",
+    "mock": "npm run clean && node scripts/devServer.js mock",
     "start": "clnpm run cleanean && node scripts/devServer.js development",
     "dev": "npm run clean && node scripts/devServer.js development",
     "package": "webpack --config config/webpack.config.package.js",
-    "build": "npm run clean && webpack --config config/webpack.config.prod.js -p"
+    "build": "npm run clean && webpack --config config/webpack.config.prod.js -p",
+    "eslint": "eslint --config .eslintrc.js src/js/**/*.js"
   },
+  "pre-commit": ["eslint"],
   "devDependencies": {
     "babel-core": "^6.6.5",
     "babel-eslint": "^5.0.4",
@@ -38,6 +40,7 @@
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "node-sass": "^3.13.1",
+    "pre-commit": "^1.2.2",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",

@@ -5,6 +5,6 @@ export default {
 	data(){
 		return {
 			title: 'i\'m help page'
-		}
+		};
 	}
 };

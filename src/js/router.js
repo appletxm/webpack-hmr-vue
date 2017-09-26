@@ -1,7 +1,9 @@
+/* global Vue, VueRouter */
+
 import home from './pages/home';
 import help from './pages/help';
 import about from './pages/about';
-import configAxios from './utils/axioDecorate'
+import configAxios from './utils/axioDecorate';
 
 let routes, router;
 
