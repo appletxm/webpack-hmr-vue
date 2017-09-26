@@ -4,8 +4,6 @@
 	<meta charset="UTF-8">  
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">  
 	<title>my test vue hmr workspace</title> 
-	<link href="http://localhost:8088/dist/assets/style/weui.css" rel="stylesheet" />
-
 	<% var cssFiles = htmlWebpackPlugin.options.libFiles.css %>
 	<% for (var index in cssFiles) { %>
     	<link href="<%= cssFiles[index] %>" rel="stylesheet" />
@@ -19,6 +17,5 @@
 		<script type="text/javascript" src="<%= jsFiles[index] %>"></script>
 	<% } %>
 
-	<script type="text/javascript" src="http://localhost:8088/dist/assets/js-libs/vue.js"></script>
 </body>
 </html>

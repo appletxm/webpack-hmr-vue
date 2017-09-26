@@ -26,7 +26,7 @@ module.exports = {
             ]
         }
     },
-    prd: {
+    prod: {
         libFiles: {
             css: [
                'assets/font/iconfont.css',

@@ -11,10 +11,12 @@
     "weui.js": "1.1.2"
   },
   "scripts": {
-    "mock" : "node scripts/devServer.js mock",
-    "start": "node scripts/devServer.js development",
+    "clean": "rimraf dist/*",
+    "mock" : "npm run clean && node scripts/devServer.js mock",
+    "start": "clnpm run cleanean && node scripts/devServer.js development",
+    "dev": "npm run clean && node scripts/devServer.js development",
     "package": "webpack --config config/webpack.config.package.js",
-    "build": "webpack --config config/webpack.config.prod.js -p"
+    "build": "npm run clean && webpack --config config/webpack.config.prod.js -p"
   },
   "devDependencies": {
     "babel-core": "^6.6.5",

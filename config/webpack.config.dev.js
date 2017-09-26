@@ -53,15 +53,10 @@ var devConfig = {
             },
             {
                 test: /\.scss$/,
-                //loader: ExtractTextPlugin.extract('style', 'css', 'sass'),
+                //loader: ExtractTextPlugin.extract('style', 'css!sass'),
                 loader: 'style!css!sass',
                 exclude: /node_modules/
             },
-           /* {
-                test: /\.vue$/,
-                loader: 'vue',
-                exclude: /node_modules/
-            },*/
             {
                 test: /\.html$/,
                 loader: 'html',
