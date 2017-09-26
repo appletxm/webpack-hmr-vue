@@ -11,7 +11,8 @@
     "weui.js": "1.1.2"
   },
   "scripts": {
-    "start": "node scripts/dev-server.js",
+    "mock" : "node scripts/devServer.js mock",
+    "start": "node scripts/devServer.js development",
     "package": "webpack --config config/webpack.config.package.js",
     "build": "webpack --config config/webpack.config.prod.js -p"
   },

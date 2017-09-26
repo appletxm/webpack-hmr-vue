@@ -5,6 +5,11 @@
           "plugins": [
               "transform-runtime"
           ]
-      }
+      },
+      "mock": {
+        "plugins": [
+            "transform-runtime"
+        ]
+    }
   }
 }

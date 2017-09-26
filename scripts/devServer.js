@@ -4,15 +4,16 @@ var express = require('express'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
     webpackHotMiddleware = require('webpack-hot-middleware'),
     webpackDevConfig = require('../config/webpack.config.dev.js'),
-    envConfig = require('../config/env');
+    envConfig = require('../config/env'),
+    serverRouter = require('./serverRouter');
 
 var app = express();
-
 var compiler = webpack(webpackDevConfig);
 
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = process.argv && process.argv.length >= 2 ? (process.argv)[2]: 'development';
 
-//console.info('####', compiler.outputPath, path.join(compiler.outputPath, 'index.html'));
+//console.info( process.argv, process.env.NODE_ENV);
+//console.info(compiler.outputPath, path.join(compiler.outputPath, 'index.html'));
 
 // attach to the compiler & the server
 app.use(webpackDevMiddleware(compiler, {
@@ -28,22 +29,32 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(express.static(__dirname + '/../dist'));
 
-app.get('*', function(req, res) {
-    //TODO compiler.outputPath is equal to the webpack publickPath
-    var filename = path.join(compiler.outputPath,'index.html');
-    //console.info('####', compiler.outputPath, path.join(compiler.outputPath, 'index.html'));
-    console.info('[req info]', req.params);
+app.use('*', serverRouter['*']);
 
-    compiler.outputFileSystem.readFile(filename, function(err, result){
-        if (err) {
-            res.send(err);
-        }else{
-            res.set('content-type','text/html');
-            res.send(result);
-        }
-        res.end();
-    });
+app.use('/api', function(req, res){
+    serverRouter['/api'](req, res);
 });
+
+app.use('/', function(req, res) {
+    serverRouter['/'](req, res, compiler);
+})
+
+// app.get('/', function(req, res) {
+//     //TODO compiler.outputPath is equal to the webpack publickPath
+//     var filename = path.join(compiler.outputPath,'index.html');
+//     //console.info('####', compiler.outputPath, path.join(compiler.outputPath, 'index.html'));
+//     console.info('[req info]', req.params);
+
+//     compiler.outputFileSystem.readFile(filename, function(err, result){
+//         if (err) {
+//             res.send(err);
+//         }else{
+//             res.set('content-type','text/html');
+//             res.send(result);
+//         }
+//         res.end();
+//     });
+// });
 
 //TODO why in windows the port must to be 8088, and in mac you can define anyother port
 //sometimes the npm start cli will get the "event: 160 erro" in windows you need to run the cli in the ternimal "rm -rf node_modules && npm cache clean --force && npm install" or the port still works need to end them
