@@ -5,7 +5,8 @@ var express = require('express'),
     webpackHotMiddleware = require('webpack-hot-middleware'),
     webpackDevConfig = require('../config/webpack.config.dev.js'),
     envConfig = require('../config/env'),
-    serverRouter = require('./serverRouter');
+    serverRouter = require('./serverRouter'),
+    open = require("open");
 
 var app = express();
 var compiler = webpack(webpackDevConfig);
@@ -58,6 +59,11 @@ app.use('/', function(req, res) {
 
 //TODO why in windows the port must to be 8088, and in mac you can define anyother port
 //sometimes the npm start cli will get the "event: 160 erro" in windows you need to run the cli in the ternimal "rm -rf node_modules && npm cache clean --force && npm install" or the port still works need to end them
-app.listen(envConfig.dev.port, function(arg){
-	console.info('dev server started at: ', 'http://localhost:8088');
+app.listen(envConfig.dev.port, '127.0.0.1', function(arg){
+    console.info('dev server started at: ', 'http://localhost:' + envConfig.dev.port);
+    setTimeout(function(){
+        var openUrl = 'http://localhost:' + envConfig.dev.port;
+        open(openUrl, 'chrome');
+    }, 3000);
+    
 });

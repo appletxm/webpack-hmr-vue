@@ -4,6 +4,8 @@ import html from './template.html';
 //import weui from 'weui.js';
 import picker from './picker';
 
+import * as testPromise from '../../utils/testPromise';
+
 export default {
 	template: html,
 	data() {
@@ -27,5 +29,15 @@ export default {
 					console.log(error);
 				});
 		}
+	},
+	mounted() {
+		testPromise.callGetA(123, 456).then((abc) => {
+			console.info('****88***', abc);
+			return testPromise.callGetB(123, abc);
+		}).then((res) => {
+			console.info('****99***', res);
+		}).catch((err) => {
+			console.info('****promise final***', err);
+		});
 	}
 };
